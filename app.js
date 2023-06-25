@@ -13,10 +13,9 @@ app.set("view engine", "hbs");
 app.set("views", "./views")
 app.use(express.static("views"));
 
+const mainRoute = require("./routes/main.routes");
 
-app.get("/", (req, res) => {
-    res.render("index");
-})
+app.use(mainRoute);
 
 const start = async () => {
     try {
