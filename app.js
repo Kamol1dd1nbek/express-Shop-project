@@ -2,6 +2,8 @@ const express = require('express');
 const config = require('config');
 const exHbs = require('express-handlebars');
 const mongoose = require('mongoose');
+const flash = require("connect-flash");
+const session = require("express-session")
 const app = express();
 
 
@@ -16,8 +18,11 @@ app.use(express.static("public"));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(session({secret: "Kamoliddin", resave: false, saveUninitialized: false}));
+app.use(flash());
 
 const mainRoute = require("./routes/main.routes");
+
 
 app.use(mainRoute);
 
