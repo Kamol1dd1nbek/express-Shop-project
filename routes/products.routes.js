@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { addProduct } = require("../controller/product.controller");
 const router = Router();
 
 router.get("/", (req, res) => {
@@ -20,9 +21,6 @@ router.get("/add", (req, res) => {
     });
 });
 
-router.post("/add-products", (req, res) => {
-    console.log(req.body);
-    res.redirect("/");
-})
+router.post("/add-products", addProduct);
 
 module.exports = router;
