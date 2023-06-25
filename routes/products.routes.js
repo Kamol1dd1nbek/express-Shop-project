@@ -12,11 +12,17 @@ router.get("/products", (req, res) => {
         isProducts: true
     });
 });
+
 router.get("/add", (req, res) => {
     res.render("add", {
         title: "Add | Book Shop",
         isAdd: true
     });
 });
+
+router.post("/add-products", (req, res) => {
+    console.log(req.body);
+    res.redirect("/");
+})
 
 module.exports = router;
