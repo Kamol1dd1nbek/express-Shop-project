@@ -6,6 +6,10 @@ const router = Router();
 router.get("/login", getLogin);
 router.post("/login", postLogin);
 
+router.get("/logout", (req, res) => {
+    res.clearCookie("accessToken");
+    res.redirect("/");
+});
 
 router.get("/register", getRegister);
 router.post("/register", postRegister);

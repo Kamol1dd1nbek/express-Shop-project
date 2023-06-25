@@ -4,6 +4,10 @@ const flash = require('connect-flash');
 const { generateJwtToken } = require("../services/token.service");
 const config = require('config');
 const getLogin = (req, res) => {
+    if (req.cookies.accessToken) {
+        res.redirect("/");
+        return;
+    }
     res.render("login", {
         title: "LogIn | Book Shop",
         isLogin: true,

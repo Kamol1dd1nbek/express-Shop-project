@@ -5,6 +5,10 @@ const config = require('config');
 const { generateJwtToken } = require("../services/token.service");
 
 const getRegister = (req, res) => {
+    if (req.cookies.accessToken) {
+        res.redirect("/");
+        return;
+    }
     res.render("register", {
         title: "Register | Book Shop",
         isRegister: true,
