@@ -1,17 +1,13 @@
 const { Router } = require("express");
+const { getLogin, postLogin } = require("../controller/login.controller");
+const { getRegister, postRegister } = require("../controller/register.controller");
 const router = Router();
 
-router.get("/login", (req, res) => {
-    res.render("login", {
-        title: "LogIn | Book Shop",
-        isLogin: true
-    });
-});
-router.get("/register", (req, res) => {
-    res.render("register", {
-        title: "Register | Book Shop",
-        isRegister: true
-    });
-});
+router.get("/login", getLogin);
+router.post("/login", postLogin);
+
+
+router.get("/register", getRegister);
+router.post("/register", postRegister);
 
 module.exports = router;
