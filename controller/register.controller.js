@@ -1,4 +1,6 @@
 const User = require("../models/User.model");
+const bcrypt = require('bcrypt');
+
 const getRegister = (req, res) => {
     res.render("register", {
         title: "Register | Book Shop",
@@ -14,11 +16,12 @@ const postRegister = async (req, res) => {
         password
     } = req.body;
 
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
         firstName,
         lastName,
         email,
-        password
+        password: hashedPassword
     });
     console.log(user);
     res.redirect("/");
