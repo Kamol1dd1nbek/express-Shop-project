@@ -11,24 +11,32 @@
                 <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="/add">Add</a>
                 
                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                    {{#if isLogin}}
-                        <button type="button" class="btn btn-primary active">
-                        <a class="text-light text-decoration-none" href="/login">LogIn</a>
+                    
+                    {{#if token}}
+                        <button type="button" class="btn btn-danger active">
+                            <a class="text-light text-decoration-none" href="#">Log Out</a>
                         </button>
                     {{else}}
-                        <button type="button" class="btn btn-primary">
-                        <a class="text-light text-decoration-none" href="/login">LogIn</a>
-                        </button>
+                            {{#if isLogin}}
+                            <button type="button" class="btn btn-primary active">
+                            <a class="text-light text-decoration-none" href="/login">Log In</a>
+                            </button>
+                        {{else}}
+                            <button type="button" class="btn btn-primary">
+                            <a class="text-light text-decoration-none" href="/login">Log In</a>
+                            </button>
+                        {{/if}}
+                        {{#if isRegister}}
+                            <button type="button" class="btn btn-success active">
+                            <a class="text-light text-decoration-none" href="/register">Register</a>
+                            </button>
+                        {{else}}
+                            <button type="button" class="btn btn-success">
+                            <a class="text-light text-decoration-none" href="/register">Register</a>
+                            </button>
+                        {{/if}}
                     {{/if}}
-                    {{#if isRegister}}
-                        <button type="button" class="btn btn-success active">
-                        <a class="text-light text-decoration-none" href="/register">Register</a>
-                        </button>
-                    {{else}}
-                        <button type="button" class="btn btn-success">
-                        <a class="text-light text-decoration-none" href="/register">Register</a>
-                        </button>
-                    {{/if}}
+                    
                 </div>
             </nav>
         </div>
