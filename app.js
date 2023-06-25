@@ -9,10 +9,14 @@ const hbs = exHbs.create({
     extname: "hbs"
 });
 app.engine("hbs", hbs.engine);
-app.set("View engine", "hbs");
-app.set("views", "views")
+app.set("view engine", "hbs");
+app.set("views", "./views")
 app.use(express.static("views"));
 
+
+app.get("/", (req, res) => {
+    res.render("index");
+})
 
 const start = async () => {
     try {
