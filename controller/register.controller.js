@@ -1,6 +1,8 @@
 const User = require("../models/User.model");
 const bcrypt = require('bcrypt');
 const flash = require("connect-flash");
+const config = require('config');
+const { generateJwtToken } = require("../services/token.service");
 
 const getRegister = (req, res) => {
     res.render("register", {
@@ -40,7 +42,15 @@ const postRegister = async (req, res) => {
         email,
         password: hashedPassword
     });
-    console.log(user);
+    
+    const token = generateJwtToken(user._id);
+
+    res.cookie("accessToken", token, {
+        httpOnly: true,
+        maxAge: config.get("refresh_ms"),
+        secure: true
+    });
+
     res.redirect("/");
 }
 

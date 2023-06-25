@@ -1,6 +1,8 @@
 const User = require("../models/User.model");
 const bcrypt = require('bcrypt');
 const flash = require('connect-flash');
+const { generateJwtToken } = require("../services/token.service");
+const config = require('config');
 const getLogin = (req, res) => {
     res.render("login", {
         title: "LogIn | Book Shop",
@@ -36,6 +38,14 @@ const postLogin = async (req, res) => {
         res.redirect("/login");
         return;
     }
+
+    const token = generateJwtToken(existUser._id);
+
+    res.cookie("accessToken", token, {
+        httpOnly: true,
+        maxAge: config.get("refresh_ms"),
+        secure: true
+    });
 
     res.redirect("/");
 }
