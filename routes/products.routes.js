@@ -1,5 +1,7 @@
 const { Router } = require("express");
-const { addProduct } = require("../controller/product.controller");
+const { addProduct, add } = require("../controller/add.controller");
+const userMiddleware = require("../middleware/user.middleware")
+const authMiddleware = require("../middleware/auth");
 const router = Router();
 
 router.get("/", (req, res) => {
@@ -14,13 +16,7 @@ router.get("/products", (req, res) => {
     });
 });
 
-router.get("/add", (req, res) => {
-    res.render("add", {
-        title: "Add | Book Shop",
-        isAdd: true
-    });
-});
-
-router.post("/add-products", addProduct);
+router.get("/add", authMiddleware, add);
+router.post("/add-products",userMiddleware, addProduct);
 
 module.exports = router;
