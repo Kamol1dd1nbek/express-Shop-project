@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
     const products = await Product.find({}).lean();
     res.render("index", {
         title: "Main Page | Book Shop",
-        products
+        products: products.reverse(),
+        userId: req.userId ? req.userId.toString() : null
     });
 });
 router.get("/products", (req, res) => {
