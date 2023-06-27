@@ -5,4 +5,8 @@ const ifequal = (a, b, options) => {
     return options.inverse(this);
 }
 
-module.exports = {ifequal}
+const getCharactersFirst = (a, b) => {
+    return a.charAt(0) + b.charAt(0);
+}
+
+module.exports = {ifequal, getCharactersFirst}

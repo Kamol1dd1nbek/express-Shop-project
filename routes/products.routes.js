@@ -13,10 +13,14 @@ router.get("/", async (req, res) => {
         userId: req.userId ? req.userId.toString() : null
     });
 });
-router.get("/products", (req, res) => {
+router.get("/products", async (req, res) => {
+    const user = req.userId ? req.userId.toString() : null;
+
+    const myProducts = (await Product.find({user: user}).populate("user").lean()).reverse();
     res.render("products", {
         title: "Products | Book Shop",
-        isProducts: true
+        isProducts: true,
+        myProducts
     });
 });
 
