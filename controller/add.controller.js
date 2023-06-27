@@ -8,7 +8,6 @@ const add = async (req, res) => {
         });
 }
 
-
 const addProduct = async (req, res) => {
     const {title, description, image, price } = req.body;
 
@@ -16,12 +15,14 @@ const addProduct = async (req, res) => {
         req.flash("errorAddProduct", "All fields is required");
         res.redirect("/add");
         return;
-    }
+}
 
     await Product.create({...req.body, user: req.userId});
 
     res.redirect("/");
 }
+
+
 
 module.exports = {
     addProduct,

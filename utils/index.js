@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const ifequal = (a, b, options) => {
     if (a == b) {
         return options.fn(this);
@@ -9,4 +11,8 @@ const getCharactersFirst = (a, b) => {
     return a.charAt(0) + b.charAt(0);
 }
 
-module.exports = {ifequal, getCharactersFirst}
+const createdAtdate = (date) => {
+    return moment(date).format("DD MMM, YYYY");
+}
+
+module.exports = {ifequal, getCharactersFirst, createdAtdate}
