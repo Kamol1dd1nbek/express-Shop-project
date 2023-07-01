@@ -15,7 +15,7 @@ const addProduct = async (req, res) => {
         req.flash("errorAddProduct", "All fields is required");
         res.redirect("/add");
         return;
-}
+    }
 
     await Product.create({...req.body, user: req.userId});
 

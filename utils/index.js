@@ -1,6 +1,6 @@
 const moment = require('moment');
 
-const ifequal = (a, b, options) => {
+function ifequal (a, b, options) {
     if (a == b) {
         return options.fn(this);
     }

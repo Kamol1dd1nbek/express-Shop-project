@@ -19,8 +19,8 @@
                         <a href="/product/{{_id}}" type="button" class="btn btn-outline-primary">Detail</a>
                         {{#if @root.token}}
                           {{#ifequal user @root.userId}}
-                            <button type="button" class="btn btn-outline-secondary">Edit</button>
-                            <button type="button" class="btn btn-outline-danger">Right</button>
+                            <a href="/edit-product/{{_id}}" type="button" class="btn btn-outline-secondary">Edit</a>
+                            <a href="/{{title}}" type="button" class="btn btn-outline-danger">Right</a>
                           {{/ifequal}}
                         {{/if}}
                     </div>

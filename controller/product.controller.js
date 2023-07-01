@@ -31,8 +31,36 @@ const getProductById = async (req, res) => {
     });
 }
 
+
+const editProduct = async (req, res) => {
+    const id = req.params.id;
+
+    const product = await Product.findById(id).lean();
+
+    res.render("editProduct", {
+        product,
+        errorEditProduct: req.flash("errorEditProduct")
+    });
+}
+
+const editProductSave = async (req, res) => {
+    const {title, description, image, price } = req.body;
+    const id  = req.params.id;
+
+    if (!title || !description || !image || !price) {
+        req.flash("errorEditProduct", "All fields is required");
+        res.redirect(`/edit-product/${id}`);
+        return;
+    }
+
+    await Product.findByIdAndUpdate(id, req.body, {new: true});
+    res.redirect("/");
+}
+
 module.exports = {
     getAllProducts,
     getProducts,
-    getProductById
+    getProductById,
+    editProduct,
+    editProductSave
 }

@@ -33,9 +33,9 @@ const mainRoute = require("./routes/main.routes");
 
 app.use(mainRoute);
 
-app.use((req, res) => {
-    res.render("notFound");
-})
+// app.use((req, res) => {
+//     res.render("notFound");
+// });
 const start = async () => {
     try {
         await mongoose.connect(config.get("atlasUri"), {useNewUrlParser: true});
