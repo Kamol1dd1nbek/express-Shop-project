@@ -1,5 +1,6 @@
 const { isValidObjectId } = require("mongoose");
 const Product = require("../models/Product.model");
+
 const getAllProducts = async (req, res) => {
     const products = await Product.find({}).lean();
     res.render("index", {
@@ -31,7 +32,6 @@ const getProductById = async (req, res) => {
     });
 }
 
-
 const editProduct = async (req, res) => {
     const id = req.params.id;
 
@@ -57,10 +57,18 @@ const editProductSave = async (req, res) => {
     res.redirect("/");
 }
 
+const deleteProduct = async (req, res) => {
+    const id = req.params.id;
+
+    await Product.findByIdAndDelete(id);
+    res.redirect("/");
+}
+
 module.exports = {
     getAllProducts,
     getProducts,
     getProductById,
     editProduct,
-    editProductSave
+    editProductSave,
+    deleteProduct
 }

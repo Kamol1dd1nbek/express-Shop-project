@@ -25,3 +25,13 @@
     background-size: cover;
     border-radius: 20px;
 }
+
+.delete-btn {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.delete-btn:hover {
+    color: #fff;
+}
